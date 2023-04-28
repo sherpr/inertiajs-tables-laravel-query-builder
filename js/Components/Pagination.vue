@@ -80,7 +80,7 @@
       v-if="hasData && hasLinks"
       class="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between"
     >
-      <div class="flex flex-row space-x-4 items-center flex-grow">
+      <div class="flex flex-row space-x-4 items-center grow">
         <PerPageSelector
           dusk="per-page-full"
           :value="perPage"
@@ -88,7 +88,7 @@
           :on-change="onPerPageChange"
         />
 
-        <p class="hidden lg:block text-sm text-gray-700 flex-grow">
+        <p class="hidden lg:block text-sm text-gray-700 grow">
           <span class="font-medium">{{ pagination.from }}</span>
           {{ translations.to }}
           <span class="font-medium">{{ pagination.to }}</span>

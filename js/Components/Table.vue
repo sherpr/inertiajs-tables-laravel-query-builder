@@ -27,7 +27,7 @@
 
         <div
           v-if="queryBuilderProps.globalSearch"
-          class="flex flex-row w-full sm:w-auto sm:flex-grow order-1 sm:order-2 mb-2 sm:mb-0 sm:mr-4"
+          class="flex flex-row w-full sm:w-auto sm:grow order-1 sm:order-2 mb-2 sm:mb-0 sm:mr-4"
         >
           <slot
             name="tableGlobalSearch"
@@ -38,7 +38,7 @@
           >
             <TableGlobalSearch
               v-if="queryBuilderProps.globalSearch"
-              class="flex-grow"
+              class="grow"
               :label="queryBuilderProps.globalSearch.label"
               :value="queryBuilderProps.globalSearch.value"
               :on-change="changeGlobalSearchValue"
@@ -115,7 +115,7 @@
       >
         <TableWrapper :class="{ 'mt-3': !hasOnlyData }">
           <slot name="table">
-            <table class="min-w-full divide-y divide-gray-200 bg-white">
+            <table class="min-w-full divide-y divide-gray-300">
               <thead class="bg-gray-50">
                 <slot
                   name="head"
@@ -123,7 +123,7 @@
                   :sort-by="sortBy"
                   :header="header"
                 >
-                  <tr class="font-medium text-xs uppercase text-left tracking-wider text-gray-500 py-3 px-6">
+                  <tr>
                     <HeaderCell
                       v-for="column in queryBuilderProps.columns"
                       :key="`table-${name}-header-${column.key}`"
@@ -132,8 +132,7 @@
                   </tr>
                 </slot>
               </thead>
-
-              <tbody class="bg-white divide-y divide-gray-200">
+              <tbody class="divide-y divide-gray-200 bg-white">
                 <slot
                   name="body"
                   :show="show"
@@ -152,7 +151,7 @@
                       v-for="column in queryBuilderProps.columns"
                       v-show="show(column.key)"
                       :key="`table-${name}-row-${key}-column-${column.key}`"
-                      class="text-sm py-4 px-6 text-gray-500 whitespace-nowrap"
+                      class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"
                     >
                       <slot
                         :name="`cell(${column.key})`"
@@ -208,6 +207,7 @@ import forEach from "lodash-es/forEach";
 import isEqual from "lodash-es/isEqual";
 import map from "lodash-es/map";
 import pickBy from "lodash-es/pickBy";
+import {router, usePage} from "@inertiajs/vue3";
 
 const props = defineProps({
     inertia: {
@@ -274,13 +274,12 @@ const props = defineProps({
 });
 
 const app = getCurrentInstance();
-const $inertia = app ? app.appContext.config.globalProperties.$inertia : props.inertia;
 
 const updates = ref(0);
 
 const queryBuilderProps = computed(() => {
-    let data = $inertia.page.props.queryBuilderProps
-        ? $inertia.page.props.queryBuilderProps[props.name] || {}
+    let data = usePage().props.queryBuilderProps
+        ? usePage().props.queryBuilderProps[props.name] || {}
         : {};
 
     data._updates = updates.value;
@@ -604,7 +603,7 @@ function visit(url) {
         return;
     }
 
-    $inertia.get(
+    router.get(
         url,
         {},
         {
@@ -621,7 +620,7 @@ function visit(url) {
                 isVisiting.value = false;
             },
             onSuccess() {
-                if("queryBuilderProps" in $inertia.page.props){
+                if("queryBuilderProps" in usePage().props){
                     queryBuilderData.value.cursor = queryBuilderProps.value.cursor;
                     queryBuilderData.value.page = queryBuilderProps.value.page;
                 }
