@@ -42,6 +42,7 @@
               :label="queryBuilderProps.globalSearch.label"
               :value="queryBuilderProps.globalSearch.value"
               :on-change="changeGlobalSearchValue"
+              :pre-style="preStyle"
             />
           </slot>
         </div>
@@ -271,6 +272,12 @@ const props = defineProps({
         },
         required: false,
     },
+
+    preStyle: {
+        type: String,
+        default: 'default',
+        required: false,
+    }
 });
 
 const app = getCurrentInstance();

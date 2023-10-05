@@ -1,7 +1,7 @@
 <template>
   <div class="relative">
     <input
-      class="block w-full pl-9 text-sm rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 border-gray-300"
+      :class="getTheme('input', preStyle)"
       :placeholder="label"
       :value="value"
       type="text"
@@ -27,6 +27,8 @@
 </template>
 
 <script setup>
+import {inject} from "vue";
+
 defineProps({
     label: {
         type: String,
@@ -44,6 +46,37 @@ defineProps({
         type: Function,
         required: true,
     },
+
+    preStyle: {
+      type: String,
+      default: 'default',
+      required: false,
+    }
 });
+
+// Theme
+const fallbackTheme = {
+  inertia_table: {
+    global_search: {
+      input: {
+        default: "block w-full pl-9 text-sm rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 border-gray-300",
+        dootix: "block w-full pl-9 text-sm rounded-md shadow-sm focus:ring-cyan-500 focus:border-blue-500 border-gray-300",
+      },
+    },
+  },
+}
+const themeVariables = inject('themeVariables');
+const getTheme = (type, name) => {
+  if (
+    "inertia_table" in themeVariables &&
+    "global_search" in themeVariables.inertia_table &&
+    type in themeVariables.inertia_table.global_search &&
+    name in themeVariables.inertia_table.global_search[type]
+  ) {
+    return themeVariables.inertia_table.global_search[type][name];
+  } else {
+    return fallbackTheme.inertia_table.global_search[type][name];
+  }
+}
 </script>
 
