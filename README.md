@@ -1,13 +1,9 @@
 # Inertia.js Tables for Laravel Query Builder
 
-[![Latest Version on NPM](https://img.shields.io/npm/v/@dootix-developer/inertiajs-tables-laravel-query-builder.svg?style=flat-square)](https://npmjs.com/package/@dootix-developer/inertiajs-tables-laravel-query-builder)
-[![npm](https://img.shields.io/npm/dt/@dootix-developer/inertiajs-tables-laravel-query-builder.svg?style=flat-square)](https://www.npmjs.com/package/@dootix-developer/inertiajs-tables-laravel-query-builder)
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/protonemedia/inertiajs-tables-laravel-query-builder.svg?style=flat-square)](https://packagist.org/packages/dootix-developer/inertiajs-tables-laravel-query-builder)
-[![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE.md)
+
+Sherpr Fork
 
 This package provides a *DataTables-like* experience for [Inertia.js](https://inertiajs.com/) with support for searching, filtering, sorting, toggling columns, and pagination. It generates URLs that can be consumed by Spatie's excellent [Laravel Query Builder](https://github.com/spatie/laravel-query-builder) package, with no additional logic needed. The components are styled with [Tailwind CSS 3.0](https://tailwindcss.com/), but it's fully customizable with slots. The data refresh logic is based on Inertia's [Ping CRM demo](https://github.com/inertiajs/pingcrm).
-
-![Inertia.js Table for Laravel Query Builder](https://user-images.githubusercontent.com/8403149/177773377-86c32d69-8f86-47e4-8063-ea227e480d10.mp4)
 
 ## Features
 
@@ -28,8 +24,6 @@ This package provides a *DataTables-like* experience for [Inertia.js](https://in
 * [Tailwind CSS v3](https://tailwindcss.com/) + [Forms plugin](https://github.com/tailwindlabs/tailwindcss-forms)
 * PHP 8.0+
 
-**Note**: There is currently an [issue](https://github.com/protonemedia/inertiajs-tables-laravel-query-builder/issues/69) with using this package with Vite!
-
 ## Installation
 
 You need to install both the server-side package and the client-side package. Note that this package is only compatible with Laravel 9, Vue 3.0, and requires the Tailwind Forms plugin.
@@ -39,7 +33,7 @@ You need to install both the server-side package and the client-side package. No
 You can install the package via composer:
 
 ```bash
-composer require dootix-developer/inertiajs-tables-laravel-query-builder
+composer require sherpr/inertiajs-tables-laravel-query-builder
 ```
 
 The package will automatically register the Service Provider which provides a `table` method you can use on an Interia Response.
@@ -194,9 +188,9 @@ class UserIndexController
 You can install the package via either `npm` or `yarn`:
 
 ```bash
-npm install @dootix-developer/inertiajs-tables-laravel-query-builder --save
+npm install @sherpr/inertiajs-tables-laravel-query-builder --save
 
-yarn add @dootix-developer/inertiajs-tables-laravel-query-builder
+yarn add @sherpr/inertiajs-tables-laravel-query-builder
 ```
 
 Add the repository path to the `content` array of your [Tailwind configuration file](https://tailwindcss.com/docs/content-configuration). This ensures that the styling also works on production builds.
@@ -204,7 +198,7 @@ Add the repository path to the `content` array of your [Tailwind configuration f
 ```js
 module.exports = {
   content: [
-    './node_modules/@dootix-developer/inertiajs-tables-laravel-query-builder/**/*.{js,vue}',
+    './node_modules/@sherpr/inertiajs-tables-laravel-query-builder/**/*.{js,vue}',
   ]
 }
 ```
@@ -215,7 +209,7 @@ To use the `Table` component and all its related features, you must import the `
 
 ```vue
 <script setup>
-import { Table } from "@dootix-developer/inertiajs-tables-laravel-query-builder";
+import { Table } from "@sherpr/inertiajs-tables-laravel-query-builder";
 
 defineProps(["users"])
 </script>
@@ -345,7 +339,7 @@ Lastly, pass the correct `name` property to each table in the Vue template. Opti
 
 ```vue
 <script setup>
-import { Table } from "@dootix-developer/inertiajs-tables-laravel-query-builder";
+import { Table } from "@sherpr/inertiajs-tables-laravel-query-builder";
 
 defineProps(["companies", "users"])
 </script>
@@ -370,7 +364,7 @@ defineProps(["companies", "users"])
 You can override the default pagination translations with the `setTranslations` method. You can do this in your main JavaScript file:
 
 ```js
-import { setTranslations } from "@dootix-developer/inertiajs-tables-laravel-query-builder";
+import { setTranslations } from "@sherpr/inertiajs-tables-laravel-query-builder";
 
 setTranslations({
   next: "Next",
@@ -433,26 +427,6 @@ php artisan serve
 php artisan dusk
 ```
 
-## Upgrading from v1
-
-### Server-side
-
-* The `addColumn` method has been renamed to `column`.
-* The `addFilter` method has been renamed to `selectFilter`.
-* The `addSearch` method has been renamed to `searchInput`.
-* For all renamed methods, check out the arguments as some have been changed.
-* The `addColumns` and `addSearchRows` methods have been removed.
-* Global Search is not enabled by default anymore.
-
-### Client-side
-
-* The `InteractsWithQueryBuilder` mixin has been removed and is no longer needed.
-* The `Table` component no longer needs the `filters`, `search`, `columns`, and `on-update` properties.
-* When using a custom `thead` or `tbody` slot, you need to provide [the styling](https://github.com/protonemedia/inertiajs-tables-laravel-query-builder/blob/c8e21649ad372d309eeb62a8f771aa4c7cd0089e/js/Tailwind2/Table.vue#L1) manually.
-* When using a custom `thead`, the `showColumn` method has been renamed to `show`.
-* The `setTranslations` method is no longer part of the `Pagination` component, but should be imported.
-* The templates and logic of the components are not separated anymore. Use slots to inject your own implementations.
-
 ## v2.1 Roadmap
 
 * Boolean filters
@@ -474,6 +448,7 @@ If you discover any security related issues, please email pascal@protone.media i
 
 ## Credits
 
+- [dootix-developer](https://github.com/dootix-developer)
 - [Pascal Baljet](https://github.com/protonemedia)
 - [All Contributors](../../contributors)
 

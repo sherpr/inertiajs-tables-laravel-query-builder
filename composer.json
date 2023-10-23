@@ -1,13 +1,13 @@
 {
-    "name": "dootix-developer/inertiajs-tables-laravel-query-builder",
+    "name": "sherpr/inertiajs-tables-laravel-query-builder",
     "description": "Inertia.js Front-end Components for Spatie's Laravel Query Builder",
-    "homepage": "https://github.com/dootix-developer/inertiajs-tables-laravel-query-builder",
+    "homepage": "https://github.com/sherpr/inertiajs-tables-laravel-query-builder",
     "type": "library",
     "license": "MIT",
     "authors": [
         {
-            "name": "Dootix",
-            "email": "it@dootix.com"
+            "name": "Sherpr",
+            "email": "tech@sherpr.com"
         }
     ],
     "require": {
